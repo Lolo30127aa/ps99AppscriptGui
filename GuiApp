@@ -1,0 +1,70 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Ps99Script", colors)
+
+-- Create a draggable frame
+local DraggableFrame = Library.DraggableFrame("DraggableFrame", {
+    BackgroundColor3 = colors.Background,
+    Size = UDim2.new(0.5, 0, 0.5, 0),
+    Position = UDim2.new(0.25, 0, 0.25, 0),
+})
+
+-- Add the tabs and sections to the draggable frame
+local Tab = DraggableFrame:NewTab("PetDuping")
+local mainSection = Tab:NewSection("PetDuping")
+
+local Tab = DraggableFrame:NewTab("SmartProtectionV1")
+local SmartprotectionSection = Tab:NewSection("Smartprotection")
+
+local Tab = DraggableFrame:NewTab("AutofarmV1")
+local AutofarmV1Section = Tab:NewSection("Autofarm")
+
+local Tab = DraggableFrame:NewTab("PaidKey")
+local PaidKeySection = Tab:NewSection("PaidKey")
+
+-- Add UI elements to the sections
+mainSection:NewButton("Dupe pet", "Dupes your pet (you need to have the pet you wanna dupe xD)", function()
+    print("Clicked")
+end)
+
+PaidKeySection:NewTextBox("exemple : XED3-3DAS-D93D", "Put your paidkey here!", function(txt)
+    print(txt)
+end)
+
+SmartprotectionSection:NewToggle("SmartProtectionV1", "Protect you from scams, and ban", function(state)
+    if state then
+        print("Toggle On")
+    else
+        print("Toggle Off")
+    end
+end)
+
+AutofarmV1Section:NewToggle("AutofarmV1", "farm for you", function(state)
+    if state then
+        print("Toggle On")
+    else
+        print("Toggle Off")
+    end
+end)
+
+SmartprotectionSection:NewSlider("ProtectionAggresivity", "1=bad protection 500=aggresive protection", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    
+end)
+
+-- Add a minus button to the draggable frame
+local MinusButton = DraggableFrame:NewButton("-", "Minimize the GUI", function()
+    DraggableFrame:TweenPosition(UDim2.new(1, -50, 1, -50), "Out", "Quad", 0.5)
+end)
+MinusButton.Parent = DraggableFrame
+MinusButton.Position = UDim2.new(1, 0, 0, 0)
+
+-- Set the colors for the GUI
+local colors = {
+    SchemeColor = Color3.fromRGB(255,255,255),
+    Background = Color3.fromRGB(0, 0, 0),
+    Header = Color3.fromRGB(0, 0, 0),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(20, 20, 20)
+}
+
+-- Add the draggable frame to the screen
+DraggableFrame.Parent = game.CoreGui
